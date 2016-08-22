@@ -1,7 +1,6 @@
 /*利用外界矩形长宽比去除噪声*/
 /*第一个参数是连通域，第二个参数是红色通道阈值处理结果（仅用于获取图像大小来画图，最后可以去除）*/
 # pragma warning (disable:4819)
-
 #include "objectDetect.h"
 
 void rnsr_mini(vector<vector<Point>> &contours)
@@ -22,18 +21,11 @@ void rnsr_mini(vector<vector<Point>> &contours)
 	for (unsigned int i = 0; i < contours.size(), itContours != contours.end(); ++i)
 	{
 		if (rb[i] > threshold_value_rate_minimum)
-		{
 			++itContours;
-		}
 		else
 			itContours = contours.erase(itContours);   // 删除当前太扁的连通域轮廓
-
 	}
-
 	delete[] r;
 	delete[] ra;
 	delete[] rb;
-
-
-
 }

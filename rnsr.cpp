@@ -10,21 +10,16 @@ void rnsr(vector<vector<Point>> &contours)
 	double *ra = new double[contours.size()];	 // 定义外接矩形长宽比数组
 	double *rb = new double[contours.size()];
 
-
 	for (unsigned int i = 0; i < contours.size(); i++)
 	{
 		r[i] = boundingRect(Mat(contours[i]));          // 获取当前连通域轮廓的外接矩形;
 		rb[i] = ra[i] = rate(r[i].width, r[i].height);	// 计算长宽比
 	}
-
 	sort(ra, ra + contours.size());		// 将外接矩形长宽比按大小进行排序
-
 	int k = (int)((double)contours.size() * threshold_value_rate);
 	if ((k < 2) && (contours.size() > 2))  k = 2;  // 保险处理 <contours.size() 已经是大于等于 2>
 	if (k > 6)  k = 3;  // 最多保留 3 个潜在目标
-
-	double threshold_rate = (ra[contours.size() - k - 1] + ra[contours.size() - k])/2;	//定义外接矩形长宽比阈值
-	
+	double threshold_rate = (ra[contours.size() - k - 1] + ra[contours.size() - k])/2;	//定义外接矩形长宽比阈值	
 	if (threshold_rate > threshold_value_rate_maximum)  // 如果轮廓都是类正方形则全部保留
 		threshold_rate = threshold_value_rate_maximum;
 
@@ -38,11 +33,8 @@ void rnsr(vector<vector<Point>> &contours)
 		}	
 		else
 			itContours = contours.erase(itContours);   // 删除当前连通域轮廓
-
-	}
-	
+	}	
 	delete[] r;
 	delete[] ra;
 	delete[] rb;
-
 }

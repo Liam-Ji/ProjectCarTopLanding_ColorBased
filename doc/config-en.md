@@ -1,6 +1,4 @@
-A target detect project, ease to understand. Detection accuracy is quite good.
-[https://youtu.be/VdieWGwNYxM](https://youtu.be/VdieWGwNYxM)
-
+# configuration guide
 ***
 ## 1. Requirements:
 * Microsoft Visual Studio 2013

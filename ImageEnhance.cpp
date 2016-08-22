@@ -1,7 +1,5 @@
 /*对原始的视频图像进行增强*/
-
 # pragma warning (disable:4819)
-
 #include "objectDetect.h"
 
 void IntensityEnhance(Mat &img_scene, Mat &new_image);   // 子函数的函数声明
@@ -20,11 +18,7 @@ void ImageEnhance(Mat &img_scene, Mat &new_image)
 	cv::cvtColor(new_image, new_image, CV_HSV2BGR);    // 将RGB空间转换为HSV空间
 
 	IntensityEnhance_fast(new_image, new_image);    // 整体进行亮度增强
-
-
 }
-
-
 
 
 // 内部子函数
@@ -47,7 +41,6 @@ void IntensityEnhance(Mat &img_scene, Mat &new_image)
 			}
 		}
 	}
-
 	else if (img_scene.channels() == 1)    // 当输入图像为灰度图像时候
 	{
 		for (int y = 0; y < img_scene.rows; y++)
@@ -62,14 +55,10 @@ void IntensityEnhance(Mat &img_scene, Mat &new_image)
 	
 }
 
-
 // 内部子函数
 void IntensityEnhance_fast(Mat &img_scene, Mat &new_image)
 {
 	double alpha = 1.23;
 	double beta = 14;
-
 	new_image = alpha*img_scene + beta;
-
-
 }

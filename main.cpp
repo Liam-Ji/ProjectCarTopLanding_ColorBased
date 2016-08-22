@@ -1,7 +1,5 @@
 # pragma warning (disable:4819)
-
 #include "objectDetect.h"
-
 
 int main()
 {
@@ -122,7 +120,6 @@ int main()
 		namedWindow("Contours");
 		imshow("Contours", result);  // 显示图像中所有的连通域轮廓
 		
-
 		// 利用连通域轮廓线的长度大小来消除连通域的噪声
 		Mat original(Seg_img_blue_cc.size(), CV_8U, Scalar(0));
 		if (contours.size() > 3)
@@ -147,8 +144,6 @@ int main()
 		cvtColor(original, original, CV_GRAY2BGR);
 		co_image.push_back(original);
 
-
-
 		// 利用外接矩形的长宽比值大小进行去噪处理操作
 		if (contours.size() > 2)
 		{
@@ -160,8 +155,6 @@ int main()
 			cout << "without rnsr process:" << contours.size() << endl;
 			rnsr_mini(contours);		// 利用外接矩形长宽比按最小值去噪
 		}
-
-
 	
 		// 绘出经过利用连通域外接矩形去噪后的目标图像
 		Mat obj_rec_thr = Mat::zeros(Seg_img_red.size(), CV_8UC3);
@@ -176,18 +169,12 @@ int main()
 		delete[] r;
 
 		imshow("obj_rec_thr", obj_rec_thr);
-
 		putText(obj_rec_thr, "After Rectange Ratio Noise Reduced", Point(3, 15), 1, 1, Scalar(255, 255, 255), 1);
 		co_image.push_back(obj_rec_thr);
-
-
-
 
 		// 利用同一个连通域内红蓝像素数量的比值大小进行去噪处理操作
 		cout << "before pxsnsr:"<< contours.size() << endl;
 		pxsnsr(contours, Seg_img_red, Seg_img_blue);			//兴趣区像素和比值去噪		
-
-
 
 		// 绘出经过利用连通域红蓝像素数量的比值去噪后的目标图像
 		Mat obj_px_thr = Mat::zeros(Seg_img_red.size(), CV_8UC3);
@@ -205,13 +192,9 @@ int main()
 		
 		putText(obj_px_thr, "After Red-Blue Ratio Noise Reduced", Point(3, 15), 1, 1, Scalar(255, 255, 255), 1);
 		co_image.push_back(obj_px_thr);
-		
-	
-
-			
+					
 		// 坐标处理操作,利用连通域轮廓来获取目标中心点
 		ExtraCoordinates(contours, coordinates);
-
 
 		Mat img_scene_2 = img_scene.clone();   //clone赋值方式
 		if (coordinates.empty())
@@ -223,10 +206,8 @@ int main()
 			circle(img_scene_2, Point(point.x, point.y), 2, Scalar(255, 0, 255), 2);
 			putText(img_scene_2, intToString(point.x) + "," + intToString(point.y), Point(point.x + 5, point.y), 1, 1, Scalar(0, 255, 0), 2);
 		}
-
 		putText(img_scene_2, "Detection Result", Point(3, 33), 1, 1, Scalar(255, 255, 255), 1);
 		co_image.push_back(img_scene_2);
-
 		
 		// 中间处理处理结果的合并显示
 		Mat Image_com;
@@ -234,13 +215,10 @@ int main()
 		imshow("ProjectCarTopLanding_ColorBased", Image_com);
 		resize(Image_com, Image_com, s);
 		writer << Image_com;
-			
-
 
 		// 程序运行中时 暂停-继续-终端操作
 		if (waitKey(1) == 112)  // 按下按键 p 时程序暂停 <112为p的ASCii码值>
 			pause = true;
-
 		while (pause)
 		{
 			if (waitKey(1) == 112)
@@ -249,17 +227,10 @@ int main()
 				break;
 			if (waitKey(1) == 27)
 				return 0;
-		}
-			
-		cout << endl;    // 换行
-		
+		}			
+		cout << endl;		
 	}
-
-
 	return 0;
-
-
-
 }
 
 
