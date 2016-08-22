@@ -16,7 +16,8 @@ A target detect project, ease to understand. Detection accuracy is quite good.
 * Open "Project Properties"(Solution Explorer > Properties > Configuration > All Configuration)
 * Select "Additional Include Directories"(Configuration Properties > C/C++ > General), add "$(OPENCV2_DIR)\Include" in right section
 * Select "Additional Library Directories"(Configuration Properties > C/C++ > Linker > General), add "$(OPENCV2_DIR)\x86\vc12\lib"
-* Select "Additional Dependencies"(Configuration Properties > C/C++ > Linker > Input ), add:(for release just remove "d" before "." in filename)  
+* Select "Additional Dependencies"(Configuration Properties > C/C++ > Linker > Input ), add:(for release just remove "d" before "." in filename)
+ 
 >opencv_contrib249d.lib  
 >opencv_core249d.lib  
 opencv_features2d249d.lib  
